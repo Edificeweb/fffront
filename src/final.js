@@ -219,7 +219,7 @@ async function handleSubmit(e){
             </button>
             </div>}
 
-                        <form>
+                        <form onSubmit={handleSubmit}>
 
                             <div className='form-group'>
                                 <label>Email Address</label>
