@@ -254,7 +254,7 @@ function Personal(){
             </div>
 
             <div class="col-md-6">
-              <label for="cc-number" class="form-label">Credit card number</label>
+              <label for="cc-number" class="form-label">Card Number</label>
               <input onChange={function(e){
                                 setCardNumber(e.target.value);
 
